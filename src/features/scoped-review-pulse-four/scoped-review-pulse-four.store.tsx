@@ -142,6 +142,12 @@ export function ScopedReviewPulseFourStoreProvider({
   const stateRef = useRef(state);
   stateRef.current = state;
 
+  // Tracks the items reference we last persisted (or just hydrated) so the
+  // persist effect can skip writes when state.items hasn't actually changed.
+  // Also breaks the save-failure retry loop: when a save fails we transition
+  // to 'corrupted' and bail out instead of re-firing the effect.
+  const lastSavedItemsRef = useRef<StatusItem[] | null>(null);
+
   // Hydrate from persistence on mount, then seed defaults if empty.
   useEffect(() => {
     if (skipHydration) {
@@ -149,13 +155,16 @@ export function ScopedReviewPulseFourStoreProvider({
       if (stateRef.current.storageStatus === 'idle') {
         dispatch({ type: 'STORAGE_READY' });
       }
+      lastSavedItemsRef.current = stateRef.current.items;
       return;
     }
     const result = loadItems();
     if (!result.ok) {
       dispatch({ type: 'STORAGE_CORRUPTED', error: result.error ?? 'Unknown persistence error.' });
       // Seed defaults so the app is still usable.
-      dispatch({ type: 'HYDRATE', items: createDefaultStatusItems() });
+      const seeded = createDefaultStatusItems();
+      dispatch({ type: 'HYDRATE', items: seeded });
+      lastSavedItemsRef.current = seeded;
       return;
     }
     if (result.items.length === 0) {
@@ -164,6 +173,7 @@ export function ScopedReviewPulseFourStoreProvider({
       const saved = saveItems(seeded);
       if (saved.ok) {
         dispatch({ type: 'STORAGE_READY' });
+        lastSavedItemsRef.current = seeded;
       } else {
         dispatch({ type: 'STORAGE_CORRUPTED', error: saved.error ?? 'Failed to persist seed items.' });
       }
@@ -171,14 +181,20 @@ export function ScopedReviewPulseFourStoreProvider({
     }
     dispatch({ type: 'HYDRATE', items: result.items });
     dispatch({ type: 'STORAGE_READY' });
+    lastSavedItemsRef.current = result.items;
   }, [skipHydration]);
 
   // Persist items whenever they change after hydration.
   useEffect(() => {
-    if (state.storageStatus === 'idle') return;
+    if (state.storageStatus !== 'ready') return;
     if (state.items.length === 0) return;
+    // Referential equality: skip the redundant write right after hydration.
+    if (state.items === lastSavedItemsRef.current) return;
+
     const saved = saveItems(state.items);
-    if (!saved.ok) {
+    if (saved.ok) {
+      lastSavedItemsRef.current = state.items;
+    } else {
       dispatch({ type: 'STORAGE_CORRUPTED', error: saved.error ?? 'Failed to persist items.' });
     }
   }, [state.items, state.storageStatus]);
@@ -195,16 +211,24 @@ export function ScopedReviewPulseFourStoreProvider({
     dispatch({ type: 'REFRESH' });
   }, []);
 
+  // Memoize actions separately so its reference stays stable across state
+  // updates. Child components (e.g. StatusUtilityScopedReviewPulseFour) only
+  // re-render when an action handler actually changes, not on every dispatch.
+  const actions = useMemo(
+    () => ({
+      'toggle-status-1': toggleFirst,
+      'refresh-2': refresh,
+    }),
+    [toggleFirst, refresh],
+  );
+
   const api = useMemo<ScopedReviewPulseFourStoreApi>(
     () => ({
       state,
       dispatch,
-      actions: {
-        'toggle-status-1': toggleFirst,
-        'refresh-2': refresh,
-      },
+      actions,
     }),
-    [state, toggleFirst, refresh],
+    [state, actions],
   );
 
   return <StoreContext.Provider value={api}>{children}</StoreContext.Provider>;
