@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Status Utility - Scoped Review Pulse Four</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#7bd0ff",
+                        "surface-bright": "#2c3a4c",
+                        "surface": "#051424",
+                        "tertiary": "#ffc176",
+                        "on-primary-container": "#004965",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "primary-fixed-dim": "#7bd0ff",
+                        "outline": "#87929a",
+                        "surface-container-lowest": "#010f1f",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-fixed": "#001e2c",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-on-surface": "#233143",
+                        "inverse-primary": "#00668a",
+                        "on-surface-variant": "#bdc8d1",
+                        "surface-variant": "#273647",
+                        "inverse-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#273647",
+                        "secondary": "#bcc7de",
+                        "tertiary-container": "#f1a02b",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb960",
+                        "outline-variant": "#3e484f",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#3e495d",
+                        "primary-container": "#38bdf8",
+                        "on-tertiary": "#472a00",
+                        "tertiary-fixed": "#ffddb8",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-dim": "#051424",
+                        "on-secondary": "#263143",
+                        "on-primary-fixed-variant": "#004c69",
+                        "surface-container-high": "#1c2b3c",
+                        "on-primary": "#00354a",
+                        "primary-fixed": "#c4e7ff",
+                        "background": "#051424",
+                        "surface-container-low": "#0d1c2d",
+                        "on-tertiary-container": "#613b00",
+                        "on-error": "#690005",
+                        "surface-container": "#122131",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-background": "#d4e4fa",
+                        "on-secondary-container": "#aeb9d0",
+                        "primary": "#8ed5ff",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-surface": "#d4e4fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "gutter": "12px",
+                        "edge_margin": "20px",
+                        "md": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "display-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-sm": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0F172A; } /* Level 0 Background per specs */
+        .card-surface { background-color: #1E293B; border-color: #334155; } /* Level 1 Background per specs */
+        .hover-lift:hover { filter: brightness(1.05); } /* +5% lightness shift on hover */
+    </style>
+</head>
+<body class="bg-[#0F172A] text-on-surface font-body-md h-screen flex flex-col items-center justify-center p-gutter">
+<!-- Utility Container -->
+<div class="card-surface border border-outline-variant w-full max-w-md rounded-lg p-md shadow-sm">
+<!-- Header Section -->
+<div class="flex justify-between items-start mb-lg border-b border-outline-variant pb-sm">
+<div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Scoped Review Pulse Four</h1>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-xs">Last updated: <span id="timestamp">2024-05-20 14:30:05</span></p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="settings" style="font-variation-settings: 'FILL' 0;">settings</span>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 gap-gutter mb-lg">
+<!-- Metric 1: Engine -->
+<div class="card-surface border border-outline-variant p-sm flex justify-between items-center hover-lift transition-all duration-150 rounded">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="memory">memory</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Engine Load</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-data-mono text-data-mono text-on-surface">42%</span>
+<div class="w-16 h-1 bg-surface-container-high rounded overflow-hidden">
+<div class="h-full bg-tertiary-container w-[42%]"></div>
+</div>
+</div>
+</div>
+<!-- Metric 2: Connectivity -->
+<div class="card-surface border border-outline-variant p-sm flex justify-between items-center hover-lift transition-all duration-150 rounded">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="wifi_tethering">wifi_tethering</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Connectivity</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-data-mono text-data-mono text-on-surface">Stable</span>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+</div>
+<!-- Metric 3: Queue -->
+<div class="card-surface border border-outline-variant p-sm flex justify-between items-center hover-lift transition-all duration-150 rounded">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="list_alt">list_alt</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Queue</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-data-mono text-data-mono text-on-surface">1,024</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[14px]" data-icon="arrow_upward">arrow_upward</span>
+</div>
+</div>
+</div>
+<!-- Feedback Area (Hidden by default, shown for errors) -->
+<div class="hidden mb-lg p-sm bg-error-container/10 border-l-2 border-error text-on-error-container font-body-sm text-body-sm rounded" id="error-feedback">
+            Local state sync failed. Check connectivity.
+        </div>
+<!-- Actions -->
+<div class="flex items-center justify-between mt-auto border-t border-outline-variant pt-md">
+<!-- Toggle -->
+<div class="flex items-center gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant cursor-pointer select-none" for="status-toggle">READY</label>
+<button aria-checked="true" class="relative inline-flex h-5 w-9 items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface" id="status-toggle" role="switch">
+<span class="sr-only">Toggle Status</span>
+<span class="inline-block h-3 w-3 translate-x-5 transform rounded-full bg-[#0F172A] transition-transform" id="toggle-knob"></span>
+</button>
+</div>
+<!-- Refresh Button -->
+<button class="bg-[#38bdf8] text-[#0F172A] font-label-caps text-label-caps px-md py-sm rounded hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface flex items-center gap-xs" id="refresh-btn">
+<span class="material-symbols-outlined text-[16px]" data-icon="refresh">refresh</span>
+                REFRESH
+            </button>
+</div>
+</div>
+<script>
+        // Update Timestamp
+        function updateTime() {
+            const now = new Date();
+            const timestamp = now.toISOString().replace('T', ' ').substring(0, 19);
+            document.getElementById('timestamp').innerText = timestamp;
+        }
+        setInterval(updateTime, 1000);
+
+        // Toggle Logic
+        const toggleBtn = document.getElementById('status-toggle');
+        const toggleKnob = document.getElementById('toggle-knob');
+        const toggleLabel = toggleBtn.previousElementSibling;
+
+        toggleBtn.addEventListener('click', () => {
+            const isChecked = toggleBtn.getAttribute('aria-checked') === 'true';
+            
+            if (isChecked) {
+                toggleBtn.setAttribute('aria-checked', 'false');
+                toggleBtn.classList.remove('bg-primary');
+                toggleBtn.classList.add('bg-surface-variant');
+                toggleKnob.classList.remove('translate-x-5');
+                toggleKnob.classList.add('translate-x-1');
+                toggleKnob.classList.replace('bg-[#0F172A]', 'bg-on-surface-variant');
+                toggleLabel.innerText = 'PAUSED';
+                toggleLabel.classList.replace('text-on-surface-variant', 'text-error');
+            } else {
+                toggleBtn.setAttribute('aria-checked', 'true');
+                toggleBtn.classList.remove('bg-surface-variant');
+                toggleBtn.classList.add('bg-primary');
+                toggleKnob.classList.remove('translate-x-1');
+                toggleKnob.classList.add('translate-x-5');
+                toggleKnob.classList.replace('bg-on-surface-variant', 'bg-[#0F172A]');
+                toggleLabel.innerText = 'READY';
+                toggleLabel.classList.replace('text-error', 'text-on-surface-variant');
+            }
+        });
+
+        // Refresh Logic (Simulate fetching)
+        const refreshBtn = document.getElementById('refresh-btn');
+        const errorFeedback = document.getElementById('error-feedback');
+        
+        refreshBtn.addEventListener('click', () => {
+            const icon = refreshBtn.querySelector('span');
+            icon.classList.add('animate-spin');
+            refreshBtn.disabled = true;
+            refreshBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            // Hide error if shown
+            errorFeedback.classList.add('hidden');
+
+            setTimeout(() => {
+                icon.classList.remove('animate-spin');
+                refreshBtn.disabled = false;
+                refreshBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                updateTime();
+                
+                // Randomly show error for demonstration (10% chance)
+                if (Math.random() < 0.1) {
+                    errorFeedback.classList.remove('hidden');
+                }
+            }, 800);
+        });
+    </script>
+</body></html>
