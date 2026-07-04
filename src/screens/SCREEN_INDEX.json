@@ -1,0 +1,25 @@
+[
+  {
+    "screenId": "67fb953a643349798833a5a972784253",
+    "title": "Status Utility - Scoped Review Pulse Four",
+    "componentName": "StatusUtilityScopedReviewPulseFour",
+    "file": "src/screens/StatusUtilityScopedReviewPulseFour.tsx",
+    "buttons": 2,
+    "inputs": 0,
+    "links": 0,
+    "actions": [
+      {
+        "id": "toggle-status-1",
+        "kind": "button",
+        "label": "Toggle Status",
+        "index": 0
+      },
+      {
+        "id": "refresh-2",
+        "kind": "button",
+        "label": "REFRESH",
+        "index": 1
+      }
+    ]
+  }
+]
