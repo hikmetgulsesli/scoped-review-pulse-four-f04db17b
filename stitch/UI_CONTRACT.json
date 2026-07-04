@@ -1,0 +1,37 @@
+[
+  {
+    "screenId": "67fb953a643349798833a5a972784253",
+    "screenTitle": "Status Utility - Scoped Review Pulse Four",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "Toggle Status",
+        "line": 164
+      },
+      {
+        "type": "button",
+        "label": "refresh-btn",
+        "line": 170
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "Toggle Status",
+        "line": 164
+      },
+      {
+        "type": "button",
+        "label": "refresh-btn",
+        "line": 170
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 2,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  }
+]
